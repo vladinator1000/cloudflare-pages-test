@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/_worker.js",
   "scripts": {
-    "start": "npm run build && wrangler pages dev --script-path _worker.js ./dist",
+    "start": "npm run build && wrangler pages dev ./dist",
     "wrangler-dev": "wrangler pages dev ./dist",
     "build": "npm run build-worker && npm run build-website",
     "build-website": "node ./scripts/buildSite.js",

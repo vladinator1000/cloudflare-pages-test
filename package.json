@@ -1,0 +1,48 @@
+{
+  "name": "cloudflare-pages-test",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/_worker.js",
+  "scripts": {
+    "start": "npm run build && wrangler pages dev --script-path _worker.js ./dist",
+    "wrangler-dev": "wrangler pages dev ./dist",
+    "build": "npm run build-worker && npm run build-website",
+    "build-website": "node ./scripts/buildSite.js",
+    "build-worker": "node ./scripts/buildWorker.js",
+    "ts": "npm run ts-worker && npm run ts-website",
+    "ts-website": "tsc --noEmit --project ./website/tsconfig.json",
+    "ts-worker": "tsc --noEmit --project ./worker/tsconfig.json",
+    "format": "prettier --write  '*.{json,js}' './**/*.{js,ts}' 'test/**/*.{js,ts}'",
+    "lint": "eslint --max-warnings=0 . && prettier --check '*.{json,js}' './**/*.{js,ts}' 'test/**/*.{js,ts}'"
+  },
+  "author": "Vlady Veselinov",
+  "license": "MIT OR Apache-2.0",
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "typescript",
+      "prettier"
+    ]
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "wrangler": "^0.0.15"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "3.3.1",
+    "@craftamap/esbuild-plugin-html": "^0.2.2",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "esbuild": "^0.14.16",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-typescript": "^3.0.0",
+    "jest": "^27.4.7",
+    "prettier": "^2.3.0",
+    "typescript": "^4.3.2"
+  }
+}

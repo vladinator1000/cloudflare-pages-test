@@ -1,0 +1,21 @@
+enum Level {
+  Error
+  Info
+  Warn
+}
+
+type Log {
+  id: Int!
+  level: Level!
+  message: String!
+  note: String!
+}
+
+type Query {
+  goodbye: String
+  hello: String
+  logs: [Log!]!
+
+  """Asks Postgres what is 1 + 1"""
+  testDbConnection: Int
+}

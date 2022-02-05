@@ -1,17 +1,16 @@
-type Env = any
+import { Router } from 'worktop'
+import { start } from 'worktop/cfw'
 
-const module: ExportedHandler<Env> = {
-  async fetch(request, env) {
-    const url = new URL(request.url)
+import type { Context } from './types'
+import { apiRouter } from './apiRouter'
 
-    if (url.pathname.startsWith('/api/hello')) {
-      return new Response('Hello from the worker!')
-    }
+const mainRouter = new Router<Context>()
 
-    // Otherwise, serve the static assets.
-    // Without this, the Worker will error and no assets will be served.
-    return env.ASSETS.fetch(request)
-  },
-}
+mainRouter.mount('/api/', apiRouter)
 
-export default module
+mainRouter.add('GET', '*', (req, context) => {
+  // Fetch static assets like .html and .js files in the dist folder
+  return context.bindings.ASSETS.fetch(req)
+})
+
+export default start(mainRouter.run)

@@ -35,7 +35,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "worktop": "^0.8.0-next.10",
-    "wrangler": "0.0.0-6e7baf2"
+    "wrangler": "^0.0.0-536c7e5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "3.3.1",
